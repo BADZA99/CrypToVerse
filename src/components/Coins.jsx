@@ -45,8 +45,9 @@ export default function Coins() {
              <button onClick={()=>setCurrency('usd')}>usd</button>
            </div>
           { 
+           // eslint-disable-next-line
             coins.filter((data)=>{
-               if(data == ''){
+               if(data === ''){
                 return data
                } else if(data.name.toLowerCase().includes(search.toLowerCase())){
                    return data

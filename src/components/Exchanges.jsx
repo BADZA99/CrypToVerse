@@ -6,7 +6,6 @@ import axios from 'axios'
 import { BaseUrl } from './baseUrl'
 import { useState } from 'react'
 import Loader from './Loader'
-import coin from '../logo.png'
 import OurModel from './OurModel'
 
 export default function Exchanges() {

@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className='navbar'>
         <div className="logo">
-            <h1>CryptoVerse</h1>
+            <h1>CryptoVision</h1>
             <FaEthereum color='orange' size={"25"}/>
         </div>
         <ul>
