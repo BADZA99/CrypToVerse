@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import Loader from './Loader';
 import axios from 'axios';
 import Header from './Header';
+import { Link } from 'react-router-dom';
 
 export default function Coins() {
   const [loading, setLoading] = useState(true);
@@ -36,7 +37,7 @@ export default function Coins() {
                         {
                             coins.map((coindata,i) => {
                                 return (
-                                  <CoinCard coindata={coindata} i={i} currencySymbol={currencySymbol}/>
+                                  <CoinCard coindata={coindata} key={i} id={coindata.id} currencySymbol={currencySymbol}/>
                                 )
                             })
                         }
@@ -49,18 +50,19 @@ export default function Coins() {
   )
 }
 
-const CoinCard=({coindata,i,currencySymbol})=>{
+const CoinCard=({coindata,currencySymbol,id})=>{
   const profit=coindata.price_change_percentage_24h >0;
   return(
-     <div key={i} className='ex-cards'>
-        <div className='image'>
-            <img height={"80px"} src={coindata.image} alt={coindata.name} />
-        </div>
-
-        <div className="name">{coindata.name}</div>
-        <div className="price">{currencySymbol} {coindata.current_price.toFixed(0)}</div>
-        <div  style={profit ? {color:'green'} : {color :"red"}}  className="rank">{ profit ? "+" + coindata.price_change_percentage_24h.toFixed(2) :coindata.price_change_percentage_24h.toFixed(2)}</div>
-
-    </div>
+     <Link to={`/coin/${id}`}  style={{color:"white",textDecoration:"none"}}>
+       <div  className='ex-cards'>
+          <div className='image'>
+              <img height={"80px"} src={coindata.image} alt={coindata.name} />
+          </div>
+          <div className="name">{coindata.name}</div>
+          <div className="price">{currencySymbol} {coindata.current_price.toFixed(0)}</div>
+          <div  style={profit ? {color:'green'} : {color :"red"}}  className="rank">{ profit ? "+" + coindata.price_change_percentage_24h.toFixed(2) :coindata.price_change_percentage_24h.toFixed(2)}</div>
+       
+           </div>
+     </Link>
   )
 }
