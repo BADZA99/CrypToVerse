@@ -4,6 +4,7 @@ import { BaseUrl } from './baseUrl';
 import { useEffect } from 'react';
 import Loader from './Loader';
 import axios from 'axios';
+import './coin.css'
 import Header from './Header';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ export default function Coins() {
   const [loading, setLoading] = useState(true);
     const [coins, setCoins] = useState([]);
     const [currency,setCurrency]=useState('inr');
+    const [search,setSearch]=useState('')
 
     const currencySymbol=currency==='inr' ? '₹' :'$';
 
@@ -26,27 +28,39 @@ export default function Coins() {
         getCoinsData()
     }, [currency])
   return (
-    <>
-    {
-                loading ? <Loader /> : <> <Header />
-                    <div className=''>
-                      <div className='btns'>
-                          <button onClick={()=>setCurrency('inr')}>INR</button>
-                          <button onClick={()=>setCurrency('usd')}>USD</button>
-                      </div>
-                        {
-                            coins.map((coindata,i) => {
-                                return (
-                                  <CoinCard coindata={coindata} key={i} id={coindata.id} currencySymbol={currencySymbol}/>
-                                )
-                            })
-                        }
-
-                    </div>
-                </>
-    }
-      
+       <>
+      {
+        loading? <Loader/> : <> 
+         <Header/> 
+           <div className="search-bar">
+            <input type="text" 
+            placeholder='Search Your Coins ' 
+            onChange={(e)=>setSearch(e.target.value)}
+        
+          
+            />
+           </div>
+           <div className='btns' >
+             <button onClick={()=>setCurrency('inr')} >inr</button>
+             <button onClick={()=>setCurrency('usd')}>usd</button>
+           </div>
+          { 
+            coins.filter((data)=>{
+               if(data == ''){
+                return data
+               } else if(data.name.toLowerCase().includes(search.toLowerCase())){
+                   return data
+               }
+            }).map((coindata, i)=>{
+              return(
+              <CoinCard key={i} coindata={coindata} id={coindata.id}  i={i} currencySymbol={currencySymbol}  />
+              )
+            })
+          }
+        </> 
+      }
     </>
+
   )
 }
 
