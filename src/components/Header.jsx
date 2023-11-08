@@ -16,7 +16,7 @@ export default function Header() {
             </li>
 
             <li>
-                <Link to='/Coin'>Coins</Link>
+                <Link to='/coins'>Coins</Link>
             </li>
         </ul>
       
