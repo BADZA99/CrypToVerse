@@ -7,6 +7,7 @@ import { BaseUrl } from './baseUrl'
 import { useState } from 'react'
 import Loader from './Loader'
 import coin from '../logo.png'
+import OurModel from './OurModel'
 
 export default function Exchanges() {
     const [loading, setLoading] = useState(true);
@@ -24,7 +25,8 @@ export default function Exchanges() {
         <>
 
             {
-                loading ? <Loader /> : <> <Header />
+                loading ? <Loader /> : <> <Header /> 
+                <OurModel/>
                     <div className=''>
                         {
                             exchanges.map((item,i) => {
