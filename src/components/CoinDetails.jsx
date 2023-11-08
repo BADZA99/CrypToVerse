@@ -9,6 +9,7 @@ import Header from './Header'
 import { useParams } from 'react-router-dom'
 import { BiSolidUpArrow, BiSolidDownArrow } from "react-icons/bi"
 import { IoPulseOutline } from "react-icons/io5"
+import CoinChart from './CoinChart'
 
 export default function CoinDetails() {
 const [coin, setCoin]=useState([])
@@ -66,7 +67,7 @@ const [coin, setCoin]=useState([])
                 <p>     {coin.description['en'].split('.')[0]} </p>
         </div>
            </div>
-            {/* <CoinChart currency={currency} />  */}
+            <CoinChart currency={currency} /> 
          </div>
     </> 
   }
