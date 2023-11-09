@@ -28,7 +28,10 @@ const CoinChart = ({currency}) => {
     const [chartData, setChartData]=useState([])
     const { id} = useParams()
     const [days, setDays]=useState(1)
-    const CoinChartData=async()=>{
+  
+
+  useEffect(()=>{
+          const CoinChartData=async()=>{
         try {
             const { data } = await axios.get(`${BaseUrl}/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`)
             setChartData(data.prices)
@@ -37,9 +40,7 @@ const CoinChart = ({currency}) => {
             console.log(error)  
         }
     }
-
-    useEffect(()=>{
-        CoinChartData() 
+    CoinChartData();
     },[currency, id, days])
 
   const myData = {
